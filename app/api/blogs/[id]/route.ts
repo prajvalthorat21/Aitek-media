@@ -5,11 +5,11 @@ import Blog from '@/models/Blog';
 // PUT: Update a blog post
 export async function PUT(
   req: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     await connectDB();
-    const { id } = params; // Sync params for Next.js 14
+    const { id } = await params;
     const body = await req.json();
 
     // 1. Check if blog exists first
@@ -59,11 +59,11 @@ export async function PUT(
 // DELETE: Remove a blog post
 export async function DELETE(
   req: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     await connectDB();
-    const { id } = params; // Sync params for Next.js 14
+    const { id } = await params;
 
     const deletedBlog = await Blog.findByIdAndDelete(id);
 
@@ -91,11 +91,11 @@ export async function DELETE(
 // GET: Fetch a single blog by ID
 export async function GET(
   req: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     await connectDB();
-    const { id } = params; 
+    const { id } = await params; 
 
     const blog = await Blog.findById(id);
 

@@ -146,7 +146,6 @@ const CaseStudySchema = new Schema<ICaseStudy>(
  * Indexes (Performance)
  * ---------------------------------- */
 
-CaseStudySchema.index({ slug: 1 });
 CaseStudySchema.index({ status: 1, featured: 1 });
 CaseStudySchema.index({ industry: 1 });
 CaseStudySchema.index({ servicesProvided: 1 });

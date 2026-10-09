@@ -54,20 +54,22 @@ export default function BookingModal({ isOpen, onClose, calUsername, eventSlug }
             {/* Cal.com Embed */}
             <div className="w-full h-full overflow-y-auto p-2">
               <BookerEmbed
-                namespace="30min"
-                calOrigin="https://cal.com"
-                eventSlug={eventSlug}
-                username={calUsername}
-                view="month_view"
-                hideEventTypeDetails={false} // Set to true if you want a cleaner look
-                layout="column_view" 
-                customClassNames={{
-                  bookerContainer: "w-full h-full",
-                }}
-                onCreateBookingSuccess={() => {
-                  console.log("Booking created!");
-                  // Optional: Close modal after booking or redirect
-                }}
+                {...({
+                  namespace: "30min",
+                  calOrigin: "https://cal.com",
+                  eventSlug: eventSlug,
+                  username: calUsername,
+                  calLink: `${calUsername}/${eventSlug}`,
+                  view: "MONTH_VIEW",
+                  hideEventTypeDetails: false,
+                  layout: "column_view",
+                  customClassNames: {
+                    bookerContainer: "w-full h-full",
+                  },
+                  onCreateBookingSuccess: () => {
+                    console.log("Booking created!");
+                  },
+                } as any)}
               />
             </div>
           </motion.div>

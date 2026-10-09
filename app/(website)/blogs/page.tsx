@@ -7,17 +7,22 @@ import Blog from '@/models/Blog';
 
 // Fetch data directly in Server Component
 async function getBlogs() {
-  await connectDB();
-  // Using .lean() for better performance as we just need plain JSON objects
-  const blogs = await Blog.find({}).sort({ createdAt: -1 }).lean();
-  
-  // Serialize Mongo ID and dates for Next.js to be happy
-  return blogs.map((blog) => ({
-    ...blog,
-    _id: blog._id.toString(),
-    createdAt: blog.createdAt.toISOString(),
-    updatedAt: blog.updatedAt.toISOString(),
-  }));
+  try {
+    await connectDB();
+    // Using .lean() for better performance as we just need plain JSON objects
+    const blogs = await Blog.find({}).sort({ createdAt: -1 }).lean();
+    
+    // Serialize Mongo ID and dates for Next.js to be happy
+    return blogs.map((blog) => ({
+      ...blog,
+      _id: blog._id.toString(),
+      createdAt: blog.createdAt.toISOString(),
+      updatedAt: blog.updatedAt.toISOString(),
+    }));
+  } catch (error) {
+    console.warn("Could not fetch blogs during build/render:", error);
+    return [];
+  }
 }
 
 export default async function BlogListingPage() {

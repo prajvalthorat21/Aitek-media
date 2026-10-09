@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { getDashboardData } from "@/lib/actions/getDashboardData";
+
+export const dynamic = "force-dynamic";
 import {
   ArrowUpRight,
   CalendarClock,

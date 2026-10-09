@@ -9,7 +9,7 @@ import type { Metadata } from 'next';
 // --- 1. Types & Helpers ---
 
 interface PageProps {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }
 
 // Calculate reading time (approx 200 words per minute)
@@ -29,22 +29,26 @@ const formatDate = (dateString: string) => {
 };
 
 async function getBlog(slug: string) {
-  await connectDB();
-  const blog = await Blog.findOne({ slug }).lean();
-  if (!blog) return null;
+  try {
+    await connectDB();
+    const blog = await Blog.findOne({ slug }).lean();
+    if (!blog) return null;
 
-  return {
-    ...blog,
-    _id: blog._id.toString(),
-    createdAt: blog.createdAt.toISOString(),
-    updatedAt: blog.updatedAt.toISOString(),
-  };
+    return {
+      ...blog,
+      _id: blog._id.toString(),
+      createdAt: blog.createdAt.toISOString(),
+      updatedAt: blog.updatedAt.toISOString(),
+    };
+  } catch (error) {
+    console.warn("Could not fetch blog by slug:", error);
+    return null;
+  }
 }
 
 // --- 2. SEO Metadata Generator ---
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  
-  const { slug } = params; 
+  const { slug } = await params; 
   const blog = await getBlog(slug);
 
   if (!blog) {
@@ -73,8 +77,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 // --- 3. Main Component ---
 
 export default async function SingleBlogPage({ params }: PageProps) {
-  // Fix for Next.js 14.2: params are synchronous
-  const { slug } = params;
+  const { slug } = await params;
   const blog = await getBlog(slug);
 
   if (!blog) {

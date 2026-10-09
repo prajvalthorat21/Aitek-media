@@ -274,27 +274,33 @@ export default function CreateBlogPage() {
                {/* Image Card (Unchanged) */}
               <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-5 space-y-4">
                  <h3 className="text-sm font-medium text-slate-900 uppercase tracking-wide">Featured Image</h3>
-                 <CldUploadWidget 
-                    uploadPreset={process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET}
-                    onSuccess={(result: any) => setValue('coverImage', result.info.secure_url)}
-                 >
-                    {({ open }) => (
-                        <div onClick={() => open()} className={`group relative border-2 border-dashed rounded-xl p-4 text-center transition cursor-pointer min-h-[160px] flex flex-col items-center justify-center ${coverImageUrl ? 'border-gray-200 bg-gray-50' : 'border-gray-300 hover:border-blue-400 hover:bg-blue-50/50'}`}>
-                            {coverImageUrl ? (
-                                <div className="relative w-full h-full">
-                                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                                    <img src={coverImageUrl} alt="Cover" className="w-full h-40 object-cover rounded-lg shadow-sm" />
-                                    <button type="button" onClick={(e) => { e.stopPropagation(); setValue('coverImage', ''); }} className="absolute -top-2 -right-2 bg-white text-red-500 p-1.5 rounded-full shadow-md border border-gray-200 hover:bg-red-50"><X size={14} /></button>
-                                </div>
-                            ) : (
-                                <div className="space-y-2">
-                                    <div className="w-10 h-10 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mx-auto transition group-hover:scale-110"><ImagePlus size={20} /></div>
-                                    <span className="block text-xs font-medium text-blue-600">Upload Cover</span>
-                                </div>
-                            )}
-                        </div>
-                    )}
-                 </CldUploadWidget>
+                 {process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME ? (
+                   <CldUploadWidget 
+                      uploadPreset={process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET}
+                      onSuccess={(result: any) => setValue('coverImage', result.info.secure_url)}
+                   >
+                      {({ open }) => (
+                          <div onClick={() => open()} className={`group relative border-2 border-dashed rounded-xl p-4 text-center transition cursor-pointer min-h-[160px] flex flex-col items-center justify-center ${coverImageUrl ? 'border-gray-200 bg-gray-50' : 'border-gray-300 hover:border-blue-400 hover:bg-blue-50/50'}`}>
+                              {coverImageUrl ? (
+                                  <div className="relative w-full h-full">
+                                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                                      <img src={coverImageUrl} alt="Cover" className="w-full h-40 object-cover rounded-lg shadow-sm" />
+                                      <button type="button" onClick={(e) => { e.stopPropagation(); setValue('coverImage', ''); }} className="absolute -top-2 -right-2 bg-white text-red-500 p-1.5 rounded-full shadow-md border border-gray-200 hover:bg-red-50"><X size={14} /></button>
+                                  </div>
+                              ) : (
+                                  <div className="space-y-2">
+                                      <div className="w-10 h-10 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mx-auto transition group-hover:scale-110"><ImagePlus size={20} /></div>
+                                      <span className="block text-xs font-medium text-blue-600">Upload Cover</span>
+                                  </div>
+                              )}
+                          </div>
+                      )}
+                   </CldUploadWidget>
+                 ) : (
+                   <div className="p-4 border border-dashed rounded-xl text-center text-xs text-gray-400">
+                     Cloudinary configuration required for image uploads
+                   </div>
+                 )}
               </div>
 
               {/* SEO Card (AI ENHANCED) */}

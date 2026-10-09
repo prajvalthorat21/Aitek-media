@@ -14,15 +14,20 @@ type Props = {
 // --- DATA FETCHING VIA API ---
 // --- DIRECT DB FETCHING (No API Call) ---
 async function getCaseStudy(slug: string): Promise<ICaseStudy | null> {
-  await connectDB(); // Connect directly
+  try {
+    await connectDB(); // Connect directly
 
-  // Query DB directly
-  const caseStudy = await CaseStudy.findOne({ slug, status: 'published' }).lean();
+    // Query DB directly
+    const caseStudy = await CaseStudy.findOne({ slug, status: 'published' }).lean();
 
-  if (!caseStudy) return null;
+    if (!caseStudy) return null;
 
-  // Convert MongoDB object to plain JSON (fixes ID serialization issues)
-  return JSON.parse(JSON.stringify(caseStudy));
+    // Convert MongoDB object to plain JSON (fixes ID serialization issues)
+    return JSON.parse(JSON.stringify(caseStudy));
+  } catch (error) {
+    console.warn("Could not fetch case study by slug:", error);
+    return null;
+  }
 }
 
 // --- DYNAMIC METADATA ---

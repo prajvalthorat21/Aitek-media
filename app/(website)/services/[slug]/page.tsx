@@ -17,7 +17,7 @@ const CAL_LINK = "aitekmedia/30min";
 
 // --- ANIMATION CONSTANTS ---
 // "Luxury" Easing for smooth UI (similar to iOS/macOS)
-const EASING = [0.25, 0.1, 0.25, 1.0]; 
+const EASING: [number, number, number, number] = [0.25, 0.1, 0.25, 1.0]; 
 
 const containerVariants: Variants = {
   hidden: { opacity: 0 },

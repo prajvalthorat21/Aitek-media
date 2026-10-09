@@ -13,7 +13,8 @@ export async function loginAction(formData: FormData) {
     password === process.env.ADMIN_PASS
   ) {
     // Set a secure cookie valid for 7 days
-    cookies().set("admin_session", "true", { 
+    const cookieStore = await cookies();
+    cookieStore.set("admin_session", "true", { 
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
       maxAge: 60 * 60 * 24 * 7, 
@@ -27,6 +28,7 @@ export async function loginAction(formData: FormData) {
 }
 
 export async function logoutAction() {
-  cookies().delete("admin_session");
+  const cookieStore = await cookies();
+  cookieStore.delete("admin_session");
   redirect("/admin/login");
 }

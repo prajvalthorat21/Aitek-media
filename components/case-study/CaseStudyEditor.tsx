@@ -73,7 +73,7 @@ export default function CaseStudyEditor({ value, onChange }: CaseStudyEditorProp
        if (value === "" || value === "<p></p>") {
          editor.commands.clearContent();
        } else {
-         editor.commands.setContent(value, false);
+         editor.commands.setContent(value, { emitUpdate: false });
        }
     }
   }, [value, editor]);

@@ -4,13 +4,14 @@ import CaseStudy from "@/models/CaseStudy";
 
 export async function PUT(
   req: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
+  const { id } = await params;
   await connectDB();
   const data = await req.json();
 
   const updated = await CaseStudy.findByIdAndUpdate(
-    params.id,
+    id,
     {
       ...data,
       publishedAt:
@@ -24,9 +25,10 @@ export async function PUT(
 
 export async function DELETE(
   _: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
+  const { id } = await params;
   await connectDB();
-  await CaseStudy.findByIdAndDelete(params.id);
+  await CaseStudy.findByIdAndDelete(id);
   return NextResponse.json({ success: true });
 }
