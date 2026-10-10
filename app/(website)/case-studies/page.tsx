@@ -16,15 +16,20 @@ export const metadata: Metadata = {
 
 // --- DATA FETCHING ---
 async function getCaseStudies() {
-  await connectDB();
-  
-  // Fetch only published case studies, sorted by newest first
-  const caseStudies = await CaseStudy.find({ status: 'published' })
-    .sort({ publishedAt: -1, createdAt: -1 })
-    .select('title clientName industry coverImage excerpt slug results')
-    .lean();
+  try {
+    await connectDB();
 
-  return JSON.parse(JSON.stringify(caseStudies)) as ICaseStudy[];
+    // Fetch only published case studies, sorted by newest first
+    const caseStudies = await CaseStudy.find({ status: 'published' })
+      .sort({ publishedAt: -1, createdAt: -1 })
+      .select('title clientName industry coverImage excerpt slug results')
+      .lean();
+
+    return JSON.parse(JSON.stringify(caseStudies)) as ICaseStudy[];
+  } catch (error) {
+    console.error('Could not fetch case studies during build/render:', error);
+    return [];
+  }
 }
 
 export default async function CaseStudiesPage() {

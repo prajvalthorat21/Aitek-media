@@ -10,13 +10,13 @@ const extractYTId = (url: string) => {
 };
 
 export async function GET() {
-  await connectDB();
   try {
+    await connectDB();
     // .lean() strips heavy Mongoose wrappers, making it 5x faster
     const videos = await VideoTestimonial.find().sort({ order: 1, createdAt: -1 }).lean();
     return NextResponse.json(videos);
   } catch (error) {
-    return NextResponse.json({ error: "Failed to fetch" }, { status: 500 });
+    return NextResponse.json([]);
   }
 }
 

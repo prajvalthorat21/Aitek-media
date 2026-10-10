@@ -11,12 +11,12 @@ interface NavItem {
 }
 
 const servicesItems: NavItem[] = [
-  { label: "SEO & AI Search", href: "/services/marketing" },
-  { label: "PPC & Performance Marketing", href: "/services/marketing" },
-  { label: "Social Media Marketing", href: "/services/marketing" },
-  { label: "AI Video & Creative", href: "/services/marketing" },
+  { label: "SEO & AI Search", href: "/services/seo-ai-search" },
+  { label: "PPC & Performance Marketing", href: "/services/performance-marketing" },
+  { label: "Social Media Marketing", href: "/services/social-media" },
+  { label: "AI Video & Creative", href: "/services/ai-video-creative" },
   { label: "Website Design & Development", href: "/services/web-development" },
-  { label: "AI Marketing Automation", href: "/services/technology-saas" },
+  { label: "AI Marketing Automation", href: "/services/ai-marketing-automation" },
 ];
 
 const industriesItems: NavItem[] = [
@@ -31,7 +31,6 @@ const industriesItems: NavItem[] = [
 const resourcesItems: NavItem[] = [
   { label: "Insights", href: "/blogs" },
   { label: "Case Studies", href: "/case-studies" },
-  { label: "Tools", href: "/services/technology-saas" },
 ];
 
 export default function Navbar() {
@@ -227,8 +226,8 @@ export default function Navbar() {
           </div>
 
           {/* About */}
-          <Link 
-            href="/#" 
+          <Link
+            href="/#about"
             className="hover:text-black transition-colors"
             onClick={closeAll}
           >
@@ -359,8 +358,8 @@ export default function Navbar() {
 
           {/* About Link */}
           <div className="border-b border-gray-100 pb-2">
-            <Link 
-              href="/#" 
+            <Link
+              href="/#about"
               onClick={closeAll}
               className="block py-2.5 text-base font-medium text-gray-900 hover:text-black transition-colors"
             >

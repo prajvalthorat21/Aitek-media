@@ -5,6 +5,14 @@ import TrustCapabilityStrip from "@/components/TrustCapabilityStrip";
 import MarketShiftSection from "@/components/MarketShiftSection";
 import ProjectWall from "@/components/ProjectWall";
 import DifferentiationSection from "@/components/DifferentiationSection";
+import GrowthFrameworkSection from "@/components/GrowthFrameworkSection";
+import AISearchSection from "@/components/AISearchSection";
+import AIUseSection from "@/components/AIUseSection";
+import OutcomesSection from "@/components/OutcomesSection";
+import PuneIndiaSection from "@/components/PuneIndiaSection";
+import IndustriesSection from "@/components/IndustriesSection";
+import CaseStudiesSection from "@/components/CaseStudiesSection";
+import WhyAitekmediaSection from "@/components/WhyAitekmediaSection";
 import BentoGrid from "@/components/BentoGrid";
 import ServicesSection from "@/components/ServicesSection";
 import FeaturedProjects from "@/components/FeaturedProjects";
@@ -31,11 +39,19 @@ export default function Home() {
       <Hero />
       <TrustCapabilityStrip />
       <MarketShiftSection />
-      {/* Other sections like Services, Portfolio etc. */}
-      <ProjectWall />
-      <DifferentiationSection /> 
-      <BentoGrid />
       <ServicesSection />
+      <DifferentiationSection />
+      <GrowthFrameworkSection />
+      <AISearchSection />
+      <AIUseSection />
+      <OutcomesSection />
+      <PuneIndiaSection />
+      <IndustriesSection />
+      <CaseStudiesSection />
+      <WhyAitekmediaSection />
+      {/* Retained portfolio, proof, and informational sections */}
+      <ProjectWall />
+      <BentoGrid />
       <FeaturedProjects />
       <ProcessSection />
       {/* <PlansSection /> */}

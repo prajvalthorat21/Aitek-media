@@ -56,7 +56,7 @@ const INTRO_STATEMENTS = [
 
 export default function DifferentiationSection() {
   return (
-    <section className="relative bg-[#000000] pt-28 md:pt-36 pb-20 md:pb-28 px-4 sm:px-6 lg:px-8 w-full overflow-hidden border-t border-dashed border-gray-800/80 scroll-mt-24">
+    <section id="about" className="relative bg-[#000000] pt-28 md:pt-36 pb-20 md:pb-28 px-4 sm:px-6 lg:px-8 w-full overflow-hidden border-t border-dashed border-gray-800/80 scroll-mt-24">
       
       {/* Subtle Background Glow */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">

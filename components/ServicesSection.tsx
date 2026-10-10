@@ -41,7 +41,7 @@ const SERVICES: ServiceItem[] = [
       "AI Search Optimization",
     ],
     ctaLabel: "Explore SEO & AI Search",
-    ctaHref: "/services/marketing",
+    ctaHref: "/services/seo-ai-search",
     icon: Search,
   },
   {
@@ -59,7 +59,7 @@ const SERVICES: ServiceItem[] = [
       "Campaign Optimization",
     ],
     ctaLabel: "Explore Performance Marketing",
-    ctaHref: "/services/marketing",
+    ctaHref: "/services/performance-marketing",
     icon: TrendingUp,
   },
   {
@@ -78,7 +78,7 @@ const SERVICES: ServiceItem[] = [
       "Content Repurposing",
     ],
     ctaLabel: "Explore Social Media",
-    ctaHref: "/services/marketing",
+    ctaHref: "/services/social-media",
     icon: Share2,
   },
   {
@@ -96,7 +96,7 @@ const SERVICES: ServiceItem[] = [
       "Creative Variations",
     ],
     ctaLabel: "Explore AI Video & Creative",
-    ctaHref: "/services/marketing",
+    ctaHref: "/services/ai-video-creative",
     icon: Video,
   },
   {
@@ -132,7 +132,7 @@ const SERVICES: ServiceItem[] = [
       "AI Agents",
     ],
     ctaLabel: "Explore AI Marketing Automation",
-    ctaHref: "/services/technology-saas",
+    ctaHref: "/services/ai-marketing-automation",
     icon: Cpu,
   },
 ];
