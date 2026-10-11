@@ -46,7 +46,7 @@ export default async function BlogListingPage() {
             Our Latest Insights
           </h1>
           <p className="mt-4 text-xl text-gray-500">
-            News, updates, and tech strategies from Thinqit Agency.
+            News, updates, and growth strategies from the Aitekmedia team.
           </p>
         </div>
 
