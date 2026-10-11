@@ -1,156 +1,159 @@
 "use client";
 
 import React, { useState } from "react";
-import { Plus, Minus } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { Plus, Minus, ArrowRight } from "lucide-react";
 import Link from "next/link";
 
 const FAQ_DATA = [
   {
-    question: "How do you price your work? Are you a fixed-cost or retainer-based agency?",
+    question: "What does Aitekmedia do?",
     answer:
-      "We don’t sell hours or random packages. We scope work based on the growth system your business needs — foundation, demand, or scale. Some clients start with a one-time build, others move into monthly growth retainers. You’ll always get a clear milestone-based proposal before anything begins."
+      "Aitekmedia is an AI-powered digital marketing agency in Pune, India, helping businesses improve visibility, acquisition, conversion and marketing efficiency through SEO, AI Search optimization, performance marketing, social media, AI video and creative, website development and marketing automation.",
   },
   {
-    question: "How long does it usually take to see results?",
+    question: "How does AI fit into your marketing services?",
     answer:
-      "Timelines depend on your starting point. Most businesses see their Growth Foundation go live within a few weeks, and measurable signals (leads, engagement, pipeline movement) within the first 30–60 days. Revenue impact depends on your market, sales process, and demand engine."
+      "We use AI across research, analysis, content workflows, creative production, personalization and automation where it can improve speed, quality or scalability. Strategy, creative direction and quality control remain human-led.",
   },
   {
-    question: "What makes you different from a typical marketing or IT agency?",
+    question: "Do you only provide SEO services?",
     answer:
-      "We don’t operate in silos like a separate website team and ads team. We design one connected system where your website, campaigns, tracking, and follow-ups work together — so you can see what actually drives growth instead of guessing."
+      "No. SEO and AI Search are an important part of our growth offering, but we also provide performance marketing, social media, AI video and creative, website design and development, and AI marketing automation.",
   },
   {
-    question: "Do you work with all industries and business sizes?",
+    question: "Can you work with our existing marketing team?",
     answer:
-      "We work best with growth-stage businesses that already have traction or are actively investing in digital channels. If you’re still validating an idea or looking for the cheapest execution, we’re probably not the right fit."
+      "Yes. Aitekmedia can operate as an external growth partner, a specialist extension of an internal team, or support specific areas such as SEO, AI Search, PPC, creative, web or automation.",
   },
   {
-    question: "How do you track performance and success?",
+    question: "Do you work with startups and established businesses?",
     answer:
-      "Every engagement starts with clear success metrics and visibility layers — lead flow, conversion points, and pipeline or revenue signals. You’ll always know what’s working, what’s not, and where to focus next."
+      "We support businesses at different stages, with the scope and strategy adapted to the company's objectives, market, existing infrastructure and growth stage.",
   },
   {
-    question: "What happens after the initial project is completed?",
+    question: "How do you measure marketing performance?",
     answer:
-      "You’re not left with a handover and a goodbye. After launch, we provide a support and optimization phase, and for businesses ready to scale, we offer ongoing growth systems covering demand generation, automation, and performance optimization."
+      "Measurement depends on the engagement, but may include visibility, organic traffic, qualified leads, conversion rates, acquisition costs, revenue-related metrics, campaign performance and operational efficiency.",
+  },
+  {
+    question: "How long does SEO take?",
+    answer:
+      "SEO results vary based on the website, market, competition, authority, technical condition, content quality and search demand. We focus on establishing measurable progress rather than promising a fixed ranking timeline.",
   },
 ];
 
-
 export default function FAQSection() {
-  // Track which FAQ is open (null = all closed)
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   const toggleFAQ = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
   };
 
   return (
-    <section className="bg-[#000000] py-24 px-4 md:px-10 font-poppins overflow-hidden">
-      
-      {/* Top Label */}
-      <div className="w-full flex justify-center mb-4">
-        <div className="inline-flex items-center gap-2 text-[10px] font-medium text-gray-400 tracking-[0.3em] uppercase">
-          <span>{">"}</span> GOT QUESTIONS <span>{"<"}</span>
-        </div>
+    <section
+      id="faq"
+      className="relative bg-[#050505] text-[#F3F3F3] py-20 md:py-28 px-4 sm:px-6 lg:px-8 w-full overflow-hidden border-t border-dashed border-gray-800/80 scroll-mt-24"
+    >
+      {/* Subtle Background Glow */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
+        <div className="absolute top-1/4 right-10 w-[500px] h-[350px] bg-[#FF6B2C]/5 rounded-full blur-[140px]" />
+        <div className="absolute bottom-10 left-10 w-[450px] h-[350px] bg-[#FF6B2C]/4 rounded-full blur-[140px]" />
       </div>
 
-      <div className="max-w-3xl mx-auto relative z-10">
-        
-        {/* Header Section */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-6xl font-medium text-[#F3F3F3] tracking-tight relative inline-block">
-            We’ve got answers
-            
-            {/* Hand-drawn Annotation */}
-            <div className="absolute -right-32 top-0 hidden md:block">
-               <span className="font-handwriting text-[#FF6B2C] text-sm block mb-1">
-                 Let's clear things up
-               </span>
-               <svg width="40" height="30" viewBox="0 0 50 20" fill="none" className="text-[#FF6B2C] rotate-6 ml-4">
-                 <path d="M10 5 Q 30 5, 40 30" stroke="currentColor" strokeWidth="2" strokeLinecap="round" fill="none"/>
-                 <path d="M35 25 L 40 30 L 45 22" stroke="currentColor" strokeWidth="2" strokeLinecap="round" fill="none"/>
-               </svg>
-            </div>
+      <div className="relative z-10 max-w-4xl mx-auto">
+        {/* Section Header */}
+        <div className="text-center mb-14 md:mb-18">
+          {/* Eyebrow */}
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.04] border border-white/10 text-xs font-mono tracking-widest text-[#FF6B2C] uppercase mb-4">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#FF6B2C] animate-pulse" />
+            CLEAR ANSWERS FOR GROWTH TEAMS
+          </div>
+
+          {/* H2 Heading */}
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-medium tracking-tight text-[#F3F3F3] leading-[1.2]">
+            Frequently Asked Questions
           </h2>
         </div>
 
-        {/* FAQ List Container */}
-        <div className="bg-[#EAEAEA] rounded-[2.5rem] p-3 md:p-6 shadow-sm border border-gray-100/50">
-          <div className="flex flex-col gap-3">
-            {FAQ_DATA.map((item, index) => {
-              const isOpen = openIndex === index;
+        {/* FAQ Accordion List */}
+        <div className="flex flex-col gap-3.5">
+          {FAQ_DATA.map((item, index) => {
+            const isOpen = openIndex === index;
 
-              return (
-                <div 
-                  key={index} 
-                  className="bg-white rounded-2xl overflow-hidden transition-all duration-300"
+            return (
+              <div
+                key={index}
+                className={`rounded-2xl transition-all duration-300 border ${
+                  isOpen
+                    ? "bg-[#0A0A0A] border-[#FF6B2C]/40 shadow-lg shadow-[#FF6B2C]/5"
+                    : "bg-[#0A0A0A]/70 border-white/[0.08] hover:border-white/20"
+                } overflow-hidden`}
+              >
+                <button
+                  type="button"
+                  onClick={() => toggleFAQ(index)}
+                  aria-expanded={isOpen}
+                  className="w-full p-5 sm:p-6 md:px-8 md:py-6 flex items-center justify-between text-left group gap-4 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FF6B2C] focus-visible:ring-inset"
                 >
-                  <button 
-                    onClick={() => toggleFAQ(index)}
-                    className="w-full p-6 md:px-8 md:py-6 flex items-center justify-between text-left group hover:bg-gray-50 transition-colors"
+                  <span
+                    className={`font-medium text-base sm:text-lg transition-colors pr-2 leading-snug ${
+                      isOpen ? "text-[#FF6B2C]" : "text-[#F3F3F3] group-hover:text-white"
+                    }`}
                   >
-                    <span className={`font-medium text-base md:text-lg pr-4 transition-colors ${isOpen ? 'text-[#FF6B2C]' : 'text-[#0B1220]'}`}>
-                      {index + 1}. {item.question}
-                    </span>
-                    
-                    {/* Toggle Icon */}
-                    <div className={`w-6 h-6 md:w-8 md:h-8 rounded-full flex items-center justify-center shrink-0 transition-all duration-300 ${isOpen ? 'bg-[#FF6B2C] rotate-180' : 'bg-[#000000] group-hover:bg-[#FF6B2C]'}`}>
-                      {isOpen ? (
-                        <Minus size={16} className="text-white md:w-5 md:h-5" strokeWidth={3} />
-                      ) : (
-                        <Plus size={16} className="text-white md:w-5 md:h-5" strokeWidth={3} />
-                      )}
-                    </div>
-                  </button>
+                    {item.question}
+                  </span>
 
-                  {/* Expandable Answer */}
-                  <AnimatePresence>
-                    {isOpen && (
-                      <motion.div
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: "auto", opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.3, ease: "easeInOut" }}
-                        className="overflow-hidden"
-                      >
-                        <div className="px-6 md:px-8 pb-6 text-gray-600 leading-relaxed font-medium">
-                          <div className="w-full h-px bg-gray-100 mb-4" /> {/* Divider */}
-                          {item.answer}
-                        </div>
-                      </motion.div>
+                  {/* Toggle Icon */}
+                  <div
+                    className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 transition-all duration-300 border ${
+                      isOpen
+                        ? "bg-[#FF6B2C] text-white border-[#FF6B2C] rotate-180"
+                        : "bg-white/[0.04] text-gray-400 border-white/10 group-hover:border-[#FF6B2C]/50 group-hover:text-[#FF6B2C]"
+                    }`}
+                  >
+                    {isOpen ? (
+                      <Minus size={16} strokeWidth={2.5} />
+                    ) : (
+                      <Plus size={16} strokeWidth={2.5} />
                     )}
-                  </AnimatePresence>
+                  </div>
+                </button>
+
+                {/* Expandable Answer (Always in DOM for SEO, smoothly animated) */}
+                <div
+                  className={`transition-all duration-300 ease-in-out overflow-hidden ${
+                    isOpen ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
+                  }`}
+                >
+                  <div className="px-5 sm:px-6 md:px-8 pb-6 pt-1 text-sm sm:text-base text-gray-400 leading-relaxed">
+                    <div className="w-full h-px bg-white/[0.06] mb-4" />
+                    <p>{item.answer}</p>
+                  </div>
                 </div>
-              );
-            })}
-          </div>
+              </div>
+            );
+          })}
         </div>
 
-        {/* Footer / CTA */}
-        <div className="mt-16 flex flex-col items-center">
-          {/* Avatar Stack */}
-          <div className="flex -space-x-3 mb-4">
-            {[1, 2, 3].map((i) => (
-              <div key={i} className="w-10 h-10 rounded-full border-2 border-[#0B1220] overflow-hidden bg-gray-200">
-                <img 
-                  src={`https://i.pravatar.cc/100?img=${i + 10}`} 
-                  alt="Support team" 
-                  className="w-full h-full object-cover grayscale"
-                />
-              </div>
-            ))}
+        {/* Footer / CTA Card */}
+        <div className="mt-14 md:mt-16 p-6 sm:p-8 rounded-2xl bg-[#0A0A0A] border border-white/[0.08] flex flex-col sm:flex-row items-center justify-between gap-6 text-center sm:text-left">
+          <div>
+            <h4 className="text-[#F3F3F3] font-medium text-lg sm:text-xl mb-1.5">
+              Still have questions about your growth strategy?
+            </h4>
+            <p className="text-sm text-gray-400">
+              Speak directly with our growth strategists about your specific market and goals.
+            </p>
           </div>
-          
-          <h4 className="text-[#F3F3F3] font-medium text-lg mb-4">Still have questions?</h4>
-          
-          <Link href="/contact" className="bg-[#FF6B2C] text-white px-8 py-3 rounded-xl font-medium text-sm shadow-xl shadow-orange-900/10 hover:bg-[#e85a1f] hover:-translate-y-1 transition-all">
-            Let&apos;s talk
+
+          <Link
+            href="/contact"
+            className="inline-flex items-center gap-2 bg-[#FF6B2C] text-white px-7 py-3 rounded-full font-medium text-sm hover:bg-[#e85a1f] transition-all transform hover:scale-[1.02] shrink-0"
+          >
+            <span>Let&apos;s talk</span>
+            <ArrowRight className="w-4 h-4" />
           </Link>
         </div>
-
       </div>
     </section>
   );

@@ -1,9 +1,19 @@
-export const revalidate = 60;
-
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
 import connectDB from '@/lib/db';
 import Blog from '@/models/Blog';
+
+export const metadata: Metadata = {
+  title: {
+    absolute: "Insights & Growth Resources | Aitekmedia",
+  },
+  description:
+    "Practical insights, guides, and perspectives on SEO, AI Search, performance marketing, creative, web development and automation.",
+  alternates: {
+    canonical: "https://www.aitekmedia.com/blogs",
+  },
+};
 
 // Fetch data directly in Server Component
 async function getBlogs() {

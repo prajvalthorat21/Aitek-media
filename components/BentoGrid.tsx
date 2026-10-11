@@ -173,10 +173,10 @@ const isInView = useInView(containerRef, {
                 </div>
 
                 <div className="flex gap-2">
-                  <button onClick={prevStrategy} className="p-1.5 rounded-lg border border-gray-100 text-gray-400 hover:bg-gray-50 hover:text-[#0B1220] transition-colors">
+                  <button onClick={prevStrategy} aria-label="Previous strategy" className="p-1.5 rounded-lg border border-gray-100 text-gray-400 hover:bg-gray-50 hover:text-[#0B1220] transition-colors focus-visible:ring-2 focus-visible:ring-[#FF6B2C] focus-visible:outline-none">
                     <ChevronLeft size={18} />
                   </button>
-                  <button onClick={nextStrategy} className="p-1.5 rounded-lg border border-gray-100 text-gray-400 hover:bg-gray-50 hover:text-[#0B1220] transition-colors">
+                  <button onClick={nextStrategy} aria-label="Next strategy" className="p-1.5 rounded-lg border border-gray-100 text-gray-400 hover:bg-gray-50 hover:text-[#0B1220] transition-colors focus-visible:ring-2 focus-visible:ring-[#FF6B2C] focus-visible:outline-none">
                     <ChevronRight size={18} />
                   </button>
                 </div>
@@ -224,7 +224,7 @@ const isInView = useInView(containerRef, {
           {/* --- Card 4: SEO --- */}
           <div className="md:col-span-7 bg-white rounded-[2rem] p-10 border border-gray-100 shadow-sm flex flex-col justify-between">
             <div className="text-center mb-8">
-              <h3 className="text-2xl font-medium text-[#0B1220]">How to 3X your business revenue in 90 days?</h3>
+              <h3 className="text-2xl font-medium text-[#0B1220]">Building Predictable Revenue Growth Systems</h3>
               <p className="text-[15px] text-gray-400 mt-2 font-medium">It’s not about design and development of a website but complete end to end digital growth solutions for your business.</p>
             </div>
             <div className="flex justify-around items-end pb-2">
@@ -301,9 +301,9 @@ const isInView = useInView(containerRef, {
             </div>
           </div>
 
-          {/* --- Card 7: Dennis Barrett --- */}
+          {/* --- Card 7: Pratik Newale --- */}
           <div className="md:col-span-3 bg-[#000000] rounded-[2rem] overflow-hidden relative h-[280px] border border-gray-800">
-            <img src="https://media.licdn.com/dms/image/v2/D4D03AQH03F3lFWa1Yg/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1710164927486?e=1774483200&v=beta&t=FzpIP-etljFvtPP51jWmeChCRYHcl-9C7WCQZxukC74" alt="Dennis" className="w-full h-full object-cover saturate-0 opacity-80" />
+            <img src="https://media.licdn.com/dms/image/v2/D4D03AQH03F3lFWa1Yg/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1710164927486?e=1774483200&v=beta&t=FzpIP-etljFvtPP51jWmeChCRYHcl-9C7WCQZxukC74" alt="Pratik Newale - Founder & Business Head, Aitek Media" className="w-full h-full object-cover saturate-0 opacity-80" />
             <div className="absolute inset-0 bg-gradient-to-t from-[#0B1220] via-transparent to-transparent" />
             <div className="absolute bottom-6 left-6">
               <h4 className="text-white font-medium text-lg leading-tight">Pratik Newale</h4>

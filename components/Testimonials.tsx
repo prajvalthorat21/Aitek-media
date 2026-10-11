@@ -123,14 +123,16 @@ export default function Testimonials() {
           
           <button 
             onClick={() => scroll("left")}
-            className="w-12 h-12 bg-white rounded-xl border border-gray-100 flex items-center justify-center text-[#0B1220] shadow-sm hover:scale-110 transition-transform hover:shadow-md"
+            aria-label="Previous testimonial"
+            className="w-12 h-12 bg-white rounded-xl border border-gray-100 flex items-center justify-center text-[#0B1220] shadow-sm hover:scale-110 transition-transform hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FF6B2C]"
           >
             <ChevronLeft size={20} />
           </button>
           
           <button 
             onClick={() => scroll("right")}
-            className="w-12 h-12 bg-white rounded-xl border border-gray-100 flex items-center justify-center text-[#0B1220] shadow-sm hover:scale-110 transition-transform hover:shadow-md"
+            aria-label="Next testimonial"
+            className="w-12 h-12 bg-white rounded-xl border border-gray-100 flex items-center justify-center text-[#0B1220] shadow-sm hover:scale-110 transition-transform hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FF6B2C]"
           >
             <ChevronRight size={20} />
           </button>

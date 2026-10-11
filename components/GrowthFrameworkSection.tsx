@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import { motion } from "framer-motion";
 import {
   Search,
@@ -17,6 +18,7 @@ interface Stage {
   number: string;
   name: string;
   category: string;
+  href: string;
   description: string;
   icon: React.ElementType;
 }
@@ -26,6 +28,7 @@ const STAGES: Stage[] = [
     number: "01",
     name: "DISCOVER",
     category: "SEO + AI Search",
+    href: "/services/seo-ai-search",
     description:
       "Build visibility across traditional search and emerging AI-driven discovery experiences.",
     icon: Search,
@@ -34,6 +37,7 @@ const STAGES: Stage[] = [
     number: "02",
     name: "ATTRACT",
     category: "PPC + Social + Creative",
+    href: "/services/performance-marketing",
     description:
       "Reach the right audiences with campaigns and creative built around intent.",
     icon: Target,
@@ -42,6 +46,7 @@ const STAGES: Stage[] = [
     number: "03",
     name: "ENGAGE",
     category: "Content + Video + Experience",
+    href: "/services/ai-video-creative",
     description:
       "Give prospects useful reasons to understand, trust and remember your brand.",
     icon: Sparkles,
@@ -50,6 +55,7 @@ const STAGES: Stage[] = [
     number: "04",
     name: "CONVERT",
     category: "Websites + Landing Pages + CRO",
+    href: "/services/web-development",
     description:
       "Turn attention into enquiries, sign-ups, purchases and qualified leads.",
     icon: MousePointerClick,
@@ -58,6 +64,7 @@ const STAGES: Stage[] = [
     number: "05",
     name: "AUTOMATE",
     category: "AI + CRM + Workflows + Agents",
+    href: "/services/ai-marketing-automation",
     description:
       "Reduce repetitive work and help marketing and sales systems move faster.",
     icon: Workflow,
@@ -66,6 +73,7 @@ const STAGES: Stage[] = [
     number: "06",
     name: "OPTIMIZE",
     category: "Data + Analytics + Intelligence",
+    href: "/services/performance-marketing",
     description:
       "Measure what matters and continuously improve performance.",
     icon: BarChart3,
@@ -170,9 +178,13 @@ export default function GrowthFrameworkSection() {
                       </h3>
 
                       {/* Category */}
-                      <p className="text-xs font-mono font-medium text-[#FF6B2C] tracking-wide uppercase mb-3.5 pb-2.5 border-b border-white/[0.06]">
-                        {stage.category}
-                      </p>
+                      <Link
+                        href={stage.href}
+                        className="text-xs font-mono font-medium text-[#FF6B2C] hover:text-[#ff8b59] tracking-wide uppercase mb-3.5 pb-2.5 border-b border-white/[0.06] flex items-center justify-between group/cat transition-colors"
+                      >
+                        <span>{stage.category}</span>
+                        <ArrowRight size={11} className="opacity-0 group-hover/cat:opacity-100 transition-opacity" />
+                      </Link>
 
                       {/* Description */}
                       <p className="text-xs sm:text-sm text-gray-400 leading-relaxed font-normal">

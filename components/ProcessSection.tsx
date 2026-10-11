@@ -1,193 +1,300 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import Link from "next/link";
+import React from "react";
+import { motion } from "framer-motion";
+import {
+  Search,
+  Activity,
+  Layers,
+  Rocket,
+  BarChart3,
+  RefreshCw,
+  ArrowRight,
+  ArrowDown,
+} from "lucide-react";
 
-/* ---------------- DATA ---------------- */
-/* ---------------- DATA ---------------- */
-const STEPS = [
+interface ProcessStage {
+  number: string;
+  badge: string;
+  title: string;
+  description: string;
+  icon: React.ComponentType<{ className?: string; style?: React.CSSProperties }>;
+}
+
+const STAGES: ProcessStage[] = [
   {
-    title: "Strategic Consultation",
-    desc: "In-depth client consultations to understand unique business goals and challenges. Conduct comprehensive market research to identify opportunities and trends.",
-    tags: "CONSULTATION • RESEARCH • STRATEGY",
+    number: "01",
+    badge: "STAGE 01",
+    title: "UNDERSTAND",
+    description:
+      "We start with your business, customers, market, current performance and growth goals.",
+    icon: Search,
   },
   {
-    title: "AI Driven Execution",
-    desc: "Leverage the latest technologies and tools for efficient work management and project delivery. Optimize websites, social media, paid advertising, and media production using AI insights.",
-    tags: "AI OPTIMIZATION • DELIVERY • EXECUTION",
+    number: "02",
+    badge: "STAGE 02",
+    title: "DIAGNOSE",
+    description:
+      "We identify gaps across search, acquisition, content, website, conversion and marketing operations.",
+    icon: Activity,
   },
   {
-    title: "Continuous Innovation",
-    desc: "Regularly analyze campaign performance using AI-driven real-time insights. Provide detailed reports and strategic recommendations for ongoing improvement.",
-    tags: "ANALYSIS • REPORTING • GROWTH",
+    number: "03",
+    badge: "STAGE 03",
+    title: "BUILD",
+    description:
+      "We create the strategy, campaigns, content, creative, digital experiences and automation required.",
+    icon: Layers,
+  },
+  {
+    number: "04",
+    badge: "STAGE 04",
+    title: "LAUNCH",
+    description:
+      "We deploy the system, establish measurement and begin gathering performance signals.",
+    icon: Rocket,
+  },
+  {
+    number: "05",
+    badge: "STAGE 05",
+    title: "LEARN",
+    description:
+      "We analyze what customers, search engines and campaigns are telling us.",
+    icon: BarChart3,
+  },
+  {
+    number: "06",
+    badge: "STAGE 06",
+    title: "SCALE",
+    description:
+      "We double down on what works, automate what can be automated and continuously improve the system.",
+    icon: RefreshCw,
   },
 ];
 
-
-/* ---------------- SEMICIRCLE COMPONENT ---------------- */
-function Semicircle({ active }: { active: number }) {
-  const step = STEPS[active];
-
-  return (
-    <div className="relative w-[900px] max-w-full">
-      <svg viewBox="0 -120 1000 620" className="w-full" fill="none">
-        {/* Grey Background Path (Static Arc) */}
-        <path
-          d="M50 500 A450 450 0 0 1 950 500"
-          stroke="#E6E3DE"
-          strokeWidth="2"
-        />
-
-        {/* ROTATING STEPS 
-          We map through ALL steps and calculate their position based on the 'active' index.
-          If index === active, it goes to Top Center (90 degrees).
-          Others rotate around it.
-        */}
-        {STEPS.map((_, index) => {
-          // SPACING: 45 degrees (PI/4) between each step
-          const spacing = Math.PI / 4;
-          
-          // ANGLE LOGIC:
-          // Top Center is PI/2 (90 degrees).
-          // We offset based on how far this step is from the active one.
-          // (active - index) ensures that as we increase the active index (scroll down),
-          // the items move to the LEFT (Counter-Clockwise visual flow).
-          const angle = Math.PI / 2 + (active - index) * spacing;
-
-          // POLAR TO CARTESIAN:
-          // Center is (500, 500), Radius is 450.
-          const x = 500 + 450 * Math.cos(angle);
-          const y = 500 - 450 * Math.sin(angle);
-
-          const isActive = index === active;
-
-          return (
-            <motion.g
-              key={index}
-              animate={{ x, y }}
-              transition={{ type: "spring", stiffness: 60, damping: 20 }}
-            >
-              {/* The group <g> moves to x,y. 
-                 Inside, we draw the rect centered at 0,0 relative to the group.
-              */}
-              <motion.rect
-                x={-18}
-                y={-18}
-                rx="8"
-                width="36"
-                height="36"
-                animate={{
-                  fill: isActive ? "#FF6B2C" : "#FFFFFF",
-                  stroke: isActive ? "#FF6B2C" : "#E5E3DF",
-                  scale: isActive ? 1.1 : 1
-                }}
-              />
-              <motion.text
-                x={0}
-                y={5}
-                textAnchor="middle"
-                fontSize="13"
-                fontWeight="700"
-                animate={{
-                  fill: isActive ? "#FFFFFF" : "#999999"
-                }}
-              >
-                {String(index + 1).padStart(2, "0")}
-              </motion.text>
-            </motion.g>
-          );
-        })}
-      </svg>
-
-      {/* TEXT CONTENT (Fades in/out below the arc) */}
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={active}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -20 }}
-          transition={{ duration: 0.3 }}
-          className="absolute inset-0 flex flex-col items-center pt-[140px] md:pt-[180px] text-center px-6 pointer-events-none"
-
-        >
-          <span className="text-[11px] tracking-widest text-gray-400 uppercase font-medium bg-[#F6F4F1] px-3 py-1 rounded-md mb-6">
-
-            Process
-          </span>
-
-          <h3 className="text-[28px] md:text-[40px] font-medium text-[#F3F3F3] mb-4 tracking-tight">
-            {step.title}
-          </h3>
-
-          <p className="text-lg text-gray-300 max-w-md leading-relaxed mb-8">
-            {step.desc}
-          </p>
-
-          <p className="text-[11px] font-medium tracking-[0.2em] text-gray-400 mb-10 uppercase">
-            {step.tags}
-          </p>
-
-          <Link href="/contact" className="bg-[#FF6B2C] text-white px-10 py-4 rounded-2xl font-medium text-sm shadow-xl shadow-orange-200 pointer-events-auto hover:bg-[#e85a1f] transition-all transform hover:scale-105">
-            Start your project
-          </Link>
-
-          {/* Progress Dots */}
-          <div className="mt-12 flex gap-3">
-            {STEPS.map((_, i) => (
-              <div
-                key={i}
-                className={`h-1.5 rounded-full transition-all duration-500 ${
-                  i === active ? "w-8 bg-[#FF6B2C]" : "w-2 bg-gray-200"
-                }`}
-              />
-            ))}
-          </div>
-        </motion.div>
-      </AnimatePresence>
-    </div>
-  );
-}
-
-/* ---------------- MAIN SECTION ---------------- */
 export default function ProcessSection() {
-  const [active, setActive] = useState(0);
-  const containerRef = useRef<HTMLDivElement | null>(null);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (!containerRef.current) return;
-      const rect = containerRef.current.getBoundingClientRect();
-      
-      // Calculate scroll progress within the 500vh container
-      const scrollProgress = -rect.top / (rect.height - window.innerHeight);
-      const clampedProgress = Math.min(Math.max(scrollProgress, 0), 0.99);
-      
-      const newActive = Math.floor(clampedProgress * STEPS.length);
-      setActive(newActive);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
   return (
-    <section ref={containerRef} className="bg-[#000000] relative h-[320vh]">
+    <section
+      id="process"
+      className="relative bg-[#050505] text-[#F3F3F3] py-20 md:py-28 px-4 sm:px-6 lg:px-8 w-full overflow-hidden border-t border-dashed border-gray-800/80 scroll-mt-24"
+    >
+      {/* Subtle Background Glow */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
+        <div className="absolute top-1/4 right-10 w-[500px] h-[350px] bg-[#FF6B2C]/5 rounded-full blur-[140px]" />
+        <div className="absolute bottom-10 left-10 w-[450px] h-[350px] bg-[#FF6B2C]/4 rounded-full blur-[140px]" />
+      </div>
 
-      <div className="sticky top-0 h-screen w-full flex flex-col items-center justify-center overflow-hidden">
-        
-        {/* HEADER */}
-        <div className="absolute top-16 text-center w-full px-4">
-          <span className="text-[10px] tracking-[0.4em] uppercase text-gray-400 font-medium">
-            PROCESS
-          </span>
-          <h2 className="mt-4 text-4xl md:text-6xl font-medium text-[#F3F3F3] tracking-tight">
-            A collaborative approach
+      <div className="relative z-10 max-w-7xl mx-auto">
+        {/* Section Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+          className="text-center max-w-3xl mx-auto mb-16 md:mb-20"
+        >
+          {/* Eyebrow */}
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.04] border border-white/10 text-xs font-mono tracking-widest text-[#FF6B2C] uppercase mb-4">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#FF6B2C] animate-pulse" />
+            HOW WE WORK
+          </div>
+
+          {/* H2 Heading */}
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-medium tracking-tight text-[#F3F3F3] leading-[1.2]">
+            From Business Challenge to Growth System
           </h2>
+        </motion.div>
+
+        {/* Desktop 6-Stage Layout (lg and above: 2 rows of 3 connected stages) */}
+        <div className="hidden lg:block space-y-6">
+          {/* Row 1: Stages 01, 02, 03 */}
+          <div className="grid grid-cols-3 gap-6 relative">
+            {STAGES.slice(0, 3).map((stage, idx) => {
+              const Icon = stage.icon;
+              return (
+                <motion.div
+                  key={stage.number}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: idx * 0.1 }}
+                  className="group relative bg-[#0A0A0A] border border-white/[0.08] hover:border-[#FF6B2C]/30 rounded-2xl p-7 flex flex-col justify-between transition-all"
+                >
+                  {/* Top Bar: Badge, Icon, Number */}
+                  <div>
+                    <div className="flex items-center justify-between mb-6">
+                      <div className="flex items-center gap-2">
+                        <span className="px-2.5 py-1 rounded bg-white/[0.04] border border-white/10 text-[11px] font-mono font-medium tracking-wider text-[#FF6B2C] uppercase">
+                          {stage.badge}
+                        </span>
+                      </div>
+                      <span className="text-2xl font-mono font-bold text-white/20 group-hover:text-[#FF6B2C]/50 transition-colors">
+                        {stage.number}
+                      </span>
+                    </div>
+
+                    <div className="w-11 h-11 rounded-xl bg-white/[0.04] border border-white/10 flex items-center justify-center text-[#FF6B2C] mb-5 group-hover:scale-105 group-hover:border-[#FF6B2C]/30 transition-all">
+                      <Icon className="w-5 h-5" />
+                    </div>
+
+                    <h3 className="text-xl font-medium tracking-tight text-[#F3F3F3] mb-3">
+                      {stage.title}
+                    </h3>
+
+                    <p className="text-sm text-gray-400 leading-relaxed">
+                      {stage.description}
+                    </p>
+                  </div>
+
+                  {/* Horizontal Flow Indicator to next card in Row 1 */}
+                  {idx < 2 && (
+                    <div className="absolute -right-3.5 top-1/2 -translate-y-1/2 z-20 w-7 h-7 rounded-full bg-[#050505] border border-white/15 flex items-center justify-center text-white/40 group-hover:text-[#FF6B2C] group-hover:border-[#FF6B2C]/40 transition-colors shadow-lg">
+                      <ArrowRight className="w-3.5 h-3.5" />
+                    </div>
+                  )}
+                </motion.div>
+              );
+            })}
+          </div>
+
+          {/* Inter-Row Transition Connector: Stage 03 to Stage 04 */}
+          <div className="relative py-2.5 flex items-center justify-between px-6 bg-white/[0.02] border border-white/[0.06] rounded-xl text-xs font-mono text-gray-400">
+            <span className="flex items-center gap-2 text-gray-400">
+              <span className="w-1.5 h-1.5 rounded-full bg-white/40" />
+              STAGES 01–03: STRATEGY &amp; ARCHITECTURE
+            </span>
+            <div className="flex items-center gap-2 text-[#FF6B2C]">
+              <span>TRANSITION TO EXECUTION &amp; CONTINUOUS SCALE</span>
+              <ArrowDown className="w-3.5 h-3.5" />
+            </div>
+            <span className="flex items-center gap-2 text-gray-400">
+              STAGES 04–06: DEPLOYMENT &amp; OPTIMIZATION
+              <span className="w-1.5 h-1.5 rounded-full bg-[#FF6B2C]" />
+            </span>
+          </div>
+
+          {/* Row 2: Stages 04, 05, 06 */}
+          <div className="grid grid-cols-3 gap-6 relative">
+            {STAGES.slice(3, 6).map((stage, idx) => {
+              const Icon = stage.icon;
+              const isScale = stage.number === "06";
+              return (
+                <motion.div
+                  key={stage.number}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: 0.3 + idx * 0.1 }}
+                  className={`group relative bg-[#0A0A0A] border rounded-2xl p-7 flex flex-col justify-between transition-all ${
+                    isScale
+                      ? "border-[#FF6B2C]/30 bg-gradient-to-b from-[#0A0A0A] to-[#120B06]"
+                      : "border-white/[0.08] hover:border-[#FF6B2C]/30"
+                  }`}
+                >
+                  {/* Top Bar: Badge, Icon, Number */}
+                  <div>
+                    <div className="flex items-center justify-between mb-6">
+                      <div className="flex items-center gap-2">
+                        <span className="px-2.5 py-1 rounded bg-white/[0.04] border border-white/10 text-[11px] font-mono font-medium tracking-wider text-[#FF6B2C] uppercase">
+                          {stage.badge}
+                        </span>
+                      </div>
+                      <span className="text-2xl font-mono font-bold text-white/20 group-hover:text-[#FF6B2C]/50 transition-colors">
+                        {stage.number}
+                      </span>
+                    </div>
+
+                    <div className="w-11 h-11 rounded-xl bg-white/[0.04] border border-white/10 flex items-center justify-center text-[#FF6B2C] mb-5 group-hover:scale-105 group-hover:border-[#FF6B2C]/30 transition-all">
+                      <Icon className={`w-5 h-5 ${isScale ? "animate-spin" : ""}`} style={isScale ? { animationDuration: "12s" } : undefined} />
+                    </div>
+
+                    <h3 className="text-xl font-medium tracking-tight text-[#F3F3F3] mb-3">
+                      {stage.title}
+                    </h3>
+
+                    <p className="text-sm text-gray-400 leading-relaxed">
+                      {stage.description}
+                    </p>
+                  </div>
+
+                  {/* Horizontal Flow Indicator to next card in Row 2 */}
+                  {idx < 2 && (
+                    <div className="absolute -right-3.5 top-1/2 -translate-y-1/2 z-20 w-7 h-7 rounded-full bg-[#050505] border border-white/15 flex items-center justify-center text-white/40 group-hover:text-[#FF6B2C] group-hover:border-[#FF6B2C]/40 transition-colors shadow-lg">
+                      <ArrowRight className="w-3.5 h-3.5" />
+                    </div>
+                  )}
+
+                  {/* Stage 06 Continuous Improvement Motif */}
+                  {isScale && (
+                    <div className="mt-5 pt-4 border-t border-white/[0.08] flex items-center gap-2 text-xs font-mono text-[#FF6B2C]">
+                      <RefreshCw className="w-3.5 h-3.5 animate-spin" style={{ animationDuration: "8s" }} />
+                      <span>Continuous Optimization Loop</span>
+                    </div>
+                  )}
+                </motion.div>
+              );
+            })}
+          </div>
         </div>
 
-        <div className="w-full flex justify-center pt-4">
-          <Semicircle active={active} />
+        {/* Mobile / Tablet Sequential Layout (< lg: clear vertical single-column progression) */}
+        <div className="lg:hidden flex flex-col space-y-4">
+          {STAGES.map((stage, idx) => {
+            const Icon = stage.icon;
+            const isScale = stage.number === "06";
+            return (
+              <React.Fragment key={stage.number}>
+                <motion.div
+                  initial={{ opacity: 0, y: 15 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.35, delay: idx * 0.05 }}
+                  className={`bg-[#0A0A0A] border rounded-2xl p-6 sm:p-7 relative transition-all ${
+                    isScale
+                      ? "border-[#FF6B2C]/30 bg-gradient-to-b from-[#0A0A0A] to-[#120B06]"
+                      : "border-white/[0.08]"
+                  }`}
+                >
+                  <div className="flex items-center justify-between mb-4">
+                    <span className="px-2.5 py-1 rounded bg-white/[0.04] border border-white/10 text-[11px] font-mono font-medium tracking-wider text-[#FF6B2C] uppercase">
+                      {stage.badge}
+                    </span>
+                    <span className="text-2xl font-mono font-bold text-white/20">
+                      {stage.number}
+                    </span>
+                  </div>
+
+                  <div className="flex items-start gap-4">
+                    <div className="w-10 h-10 rounded-xl bg-white/[0.04] border border-white/10 flex-shrink-0 flex items-center justify-center text-[#FF6B2C] mt-0.5">
+                      <Icon className="w-5 h-5" />
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="text-lg sm:text-xl font-medium tracking-tight text-[#F3F3F3] mb-2">
+                        {stage.title}
+                      </h3>
+                      <p className="text-sm text-gray-400 leading-relaxed">
+                        {stage.description}
+                      </p>
+                    </div>
+                  </div>
+
+                  {isScale && (
+                    <div className="mt-4 pt-3 border-t border-white/[0.08] flex items-center gap-2 text-xs font-mono text-[#FF6B2C]">
+                      <RefreshCw className="w-3.5 h-3.5 animate-spin" style={{ animationDuration: "8s" }} />
+                      <span>Continuous Optimization Loop</span>
+                    </div>
+                  )}
+                </motion.div>
+
+                {/* Vertical connector down arrow between stages on mobile */}
+                {idx < STAGES.length - 1 && (
+                  <div className="flex justify-center py-1 text-white/20">
+                    <ArrowDown className="w-4 h-4 text-[#FF6B2C]/50" />
+                  </div>
+                )}
+              </React.Fragment>
+            );
+          })}
         </div>
       </div>
     </section>

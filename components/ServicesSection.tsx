@@ -222,8 +222,10 @@ export default function ServicesSection() {
                 </div>
 
                 {/* Service Title */}
-                <h3 className="text-xl sm:text-2xl font-medium text-[#F3F3F3] tracking-tight mb-2 group-hover:text-white transition-colors">
-                  {service.title}
+                <h3 className="text-xl sm:text-2xl font-medium text-[#F3F3F3] tracking-tight mb-2 transition-colors">
+                  <Link href={service.ctaHref} className="hover:text-[#FF6B2C] transition-colors">
+                    {service.title}
+                  </Link>
                 </h3>
 
                 {/* Headline */}
@@ -243,12 +245,13 @@ export default function ServicesSection() {
                   </span>
                   <div className="flex flex-wrap gap-1.5 sm:gap-2">
                     {service.includes.map((inc, i) => (
-                      <span
+                      <Link
                         key={i}
-                        className="px-2.5 py-1 rounded-lg bg-white/[0.03] border border-white/[0.08] text-[11px] sm:text-xs text-gray-300 font-normal hover:border-white/20 transition-colors"
+                        href={service.ctaHref}
+                        className="px-2.5 py-1 rounded-lg bg-white/[0.03] border border-white/[0.08] text-[11px] sm:text-xs text-gray-300 font-normal hover:border-[#FF6B2C]/40 hover:text-white transition-colors"
                       >
                         {inc}
-                      </span>
+                      </Link>
                     ))}
                   </div>
                 </div>

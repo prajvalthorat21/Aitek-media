@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
@@ -84,9 +85,12 @@ function FeaturedCard({ project }: { project: any }) {
           <p className="text-sm text-gray-600 leading-relaxed max-w-md">
             {project.description}
           </p>
-          <button className="mt-6 w-fit bg-[#FF6B2C] text-white text-sm font-medium px-5 py-2.5 rounded-lg shadow hover:bg-[#e85a1f] transition-colors">
+          <Link
+            href="/case-studies"
+            className="mt-6 inline-block w-fit bg-[#FF6B2C] text-white text-sm font-medium px-5 py-2.5 rounded-lg shadow hover:bg-[#e85a1f] transition-colors"
+          >
             View project detail
-          </button>
+          </Link>
         </motion.div>
       </div>
 
@@ -178,12 +182,12 @@ export default function FeaturedProjects() {
         <div className="relative">
           {/* Navigation Buttons (Optional, for better UX) */}
           <div className="absolute top-1/2 -left-4 md:-left-12 -translate-y-1/2 z-10">
-            <button onClick={handlePrev} className="p-3 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors">
+            <button onClick={handlePrev} aria-label="Previous project" className="p-3 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FF6B2C]">
               <ChevronLeft />
             </button>
           </div>
           <div className="absolute top-1/2 -right-4 md:-right-12 -translate-y-1/2 z-10">
-             <button onClick={handleNext} className="p-3 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors">
+             <button onClick={handleNext} aria-label="Next project" className="p-3 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FF6B2C]">
               <ChevronRight />
             </button>
           </div>

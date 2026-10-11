@@ -1,21 +1,23 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { Search, TrendingUp, Share2, Video, Layout, Cpu } from "lucide-react";
 
 interface Capability {
   label: string;
+  href: string;
   icon: React.ElementType;
 }
 
 const CAPABILITIES: Capability[] = [
-  { label: "SEO & AI Search", icon: Search },
-  { label: "Performance Marketing", icon: TrendingUp },
-  { label: "Social Media", icon: Share2 },
-  { label: "AI Video & Creative", icon: Video },
-  { label: "Web Design & Development", icon: Layout },
-  { label: "AI Marketing Automation", icon: Cpu },
+  { label: "SEO & AI Search", href: "/services/seo-ai-search", icon: Search },
+  { label: "Performance Marketing", href: "/services/performance-marketing", icon: TrendingUp },
+  { label: "Social Media", href: "/services/social-media", icon: Share2 },
+  { label: "AI Video & Creative", href: "/services/ai-video-creative", icon: Video },
+  { label: "Web Design & Development", href: "/services/web-development", icon: Layout },
+  { label: "AI Marketing Automation", href: "/services/ai-marketing-automation", icon: Cpu },
 ];
 
 export default function TrustCapabilityStrip() {
@@ -49,13 +51,14 @@ export default function TrustCapabilityStrip() {
           className="w-full flex flex-wrap md:grid md:grid-cols-3 xl:flex xl:flex-nowrap items-center justify-center gap-2 sm:gap-2.5 md:gap-3 xl:gap-3 mb-14 md:mb-16 max-w-xs sm:max-w-lg md:max-w-3xl xl:max-w-none mx-auto"
         >
           {CAPABILITIES.map((item, idx) => (
-            <div
+            <Link
               key={idx}
-              className="flex items-center justify-center gap-2 sm:gap-2.5 bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 hover:border-[#FF6B2C]/50 rounded-xl px-3 sm:px-3.5 xl:px-3.5 py-2 sm:py-2.5 text-xs sm:text-[13px] xl:text-[13.5px] font-medium text-gray-200 shadow-sm transition-all duration-300 group cursor-default whitespace-nowrap"
+              href={item.href}
+              className="flex items-center justify-center gap-2 sm:gap-2.5 bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 hover:border-[#FF6B2C]/50 rounded-xl px-3 sm:px-3.5 xl:px-3.5 py-2 sm:py-2.5 text-xs sm:text-[13px] xl:text-[13.5px] font-medium text-gray-200 shadow-sm transition-all duration-300 group whitespace-nowrap hover:text-white"
             >
               <item.icon size={15} className="text-[#FF6B2C] group-hover:scale-110 transition-transform flex-shrink-0" />
               <span>{item.label}</span>
-            </div>
+            </Link>
           ))}
         </motion.div>
 

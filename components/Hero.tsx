@@ -8,7 +8,7 @@ import GrowthSystemVisual from "./GrowthSystemVisual";
 
 export default function Hero() {
   return (
-    <section className="relative min-h-[calc(100vh-2rem)] flex flex-col justify-between overflow-hidden bg-[#000000] pt-28 md:pt-32 pb-8 px-4 sm:px-6 lg:px-10 xl:px-14 w-full">
+    <section className="relative min-h-[calc(100vh-2rem)] flex flex-col justify-start lg:justify-between overflow-hidden bg-[#000000] pt-32 sm:pt-36 lg:pt-32 pb-8 px-4 sm:px-6 lg:px-10 xl:px-14 w-full">
       
       {/* --- Ambient Background Glow --- */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
@@ -17,7 +17,7 @@ export default function Hero() {
       </div>
 
       {/* --- Main Hero Content Grid --- */}
-      <div className="relative z-10 max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 xl:gap-12 items-center my-auto">
+      <div className="relative z-10 max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 xl:gap-12 items-center my-0 lg:my-auto">
         
         {/* Left Column: Messaging & CTAs */}
         <div className="lg:col-span-7 flex flex-col items-start text-left">
@@ -83,7 +83,7 @@ export default function Hero() {
           >
             <Link 
               href="/contact" 
-              className="flex items-center justify-center gap-2 bg-[#FF6B2C] text-white px-7 py-3.5 rounded-xl font-medium hover:bg-[#e85a1f] transition-all shadow-lg shadow-orange-900/20 text-base active:scale-95 text-center"
+              className="flex items-center justify-center gap-2 bg-[#FF6B2C] text-white px-7 py-3.5 rounded-xl font-medium hover:bg-[#e85a1f] transition-all shadow-lg shadow-orange-900/20 text-base active:scale-95 text-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
             >
               <span>Talk to a Growth Strategist</span>
               <ArrowRight size={17} />
@@ -91,7 +91,7 @@ export default function Hero() {
 
             <Link 
               href="#services" 
-              className="flex items-center justify-center bg-white/10 border border-white/20 text-white px-7 py-3.5 rounded-xl font-medium hover:bg-white/20 hover:border-white/30 transition-all text-base active:scale-95 text-center"
+              className="flex items-center justify-center bg-white/10 border border-white/20 text-white px-7 py-3.5 rounded-xl font-medium hover:bg-white/20 hover:border-white/30 transition-all text-base active:scale-95 text-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FF6B2C]"
             >
               Explore Our Services
             </Link>

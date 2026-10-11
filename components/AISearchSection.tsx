@@ -137,8 +137,10 @@ export default function AISearchSection() {
                   </div>
 
                   {/* Card Title */}
-                  <h3 className="text-lg sm:text-xl font-semibold text-[#F3F3F3] tracking-wide mb-3 group-hover:text-white transition-colors">
-                    {card.title}
+                  <h3 className="text-lg sm:text-xl font-semibold text-[#F3F3F3] tracking-wide mb-3 transition-colors">
+                    <Link href="/services/seo-ai-search" className="hover:text-[#FF6B2C] transition-colors">
+                      {card.title}
+                    </Link>
                   </h3>
 
                   {/* Card Description */}
@@ -150,9 +152,13 @@ export default function AISearchSection() {
                 {/* Subtle Card Footer Indicator */}
                 <div className="mt-6 pt-3 border-t border-white/[0.04] flex items-center justify-between text-[11px] font-mono text-gray-500">
                   <span>Architecture</span>
-                  <span className="text-gray-400 group-hover:text-[#FF6B2C] transition-colors">
-                    Integrated
-                  </span>
+                  <Link
+                    href="/services/seo-ai-search"
+                    className="text-gray-400 hover:text-[#FF6B2C] transition-colors inline-flex items-center gap-1"
+                  >
+                    <span>Explore Service</span>
+                    <ArrowRight size={10} />
+                  </Link>
                 </div>
               </motion.div>
             );

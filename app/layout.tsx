@@ -11,8 +11,12 @@ const poppins = Poppins({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.aitekmedia.com"),
-  title: "Aitek Media Agency",
-  description: "Premium digital solutions.",
+  title: {
+    default: "AI-Powered Digital Marketing Agency in Pune | Aitekmedia",
+    template: "%s | Aitekmedia",
+  },
+  description:
+    "Aitekmedia is an AI-powered digital marketing agency in Pune, India, offering SEO, AI Search, PPC, social media, AI video, web development and marketing automation.",
 };
 
 export default function RootLayout({
@@ -22,7 +26,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={poppins.variable}>
-      <body className="font-sans bg-[#0B1220] text-white antialiased">
+      <body className="font-sans bg-[#050505] text-white antialiased">
         {children}
       </body>
     </html>

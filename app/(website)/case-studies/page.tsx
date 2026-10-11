@@ -10,8 +10,14 @@ import CaseStudy, { ICaseStudy } from '@/models/CaseStudy';
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: 'Case Studies | Aitek Media Agency',
-  description: 'Explore how we have helped ambitious brands scale through strategic design and development.',
+  title: {
+    absolute: "Case Studies | Aitekmedia",
+  },
+  description:
+    "Explore how we help ambitious businesses scale through strategic SEO, AI search, creative and connected growth systems.",
+  alternates: {
+    canonical: "https://www.aitekmedia.com/case-studies",
+  },
 };
 
 // --- DATA FETCHING ---

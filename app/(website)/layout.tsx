@@ -9,9 +9,9 @@ export default function WebsiteLayout({
   return (
     <>
       <Navbar />
-      <main className="min-h-screen flex flex-col">
+      <div className="min-h-screen flex flex-col">
         {children}
-      </main>
+      </div>
       <Footer />
     </>
   );

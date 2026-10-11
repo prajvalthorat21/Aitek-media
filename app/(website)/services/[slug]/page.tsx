@@ -225,8 +225,37 @@ export default function ServiceDetailsPage({ params }: { params: Promise<{ slug:
     { name: "Mr. Prabhat Tiwari", link: "https://switchsol.co.in/", role: "Director, Switchsol", summary: "Lead Generation Business Website", image: service.painPoint.image },
   ];
 
+  const serviceJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "@id": `https://www.aitekmedia.com/services/${slug}#service`,
+    name: service.title,
+    description: service.hero?.subheadline || service.hero?.headline || `${service.title} by Aitekmedia`,
+    url: `https://www.aitekmedia.com/services/${slug}`,
+    provider: {
+      "@type": "Organization",
+      "@id": "https://www.aitekmedia.com/#organization",
+      name: "Aitekmedia",
+      url: "https://www.aitekmedia.com",
+    },
+    areaServed: [
+      {
+        "@type": "City",
+        name: "Pune",
+      },
+      {
+        "@type": "Country",
+        name: "India",
+      },
+    ],
+  };
+
   return (
     <main className="min-h-screen bg-[#0A0A0A] font-sans text-white selection:bg-[#FF6B2C] selection:text-white overflow-hidden">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }}
+      />
       
       {/* ---------------- SECTION 1: HERO ---------------- */}
       <section className="relative px-6 pb-20 pt-32 lg:pt-44">

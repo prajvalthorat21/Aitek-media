@@ -64,7 +64,7 @@ const INDUSTRIES: IndustryCard[] = [
     description:
       "High-intent search, lead generation, authority and conversion-focused websites.",
     ctaLabel: "Explore Professional Services →",
-    href: "/contact",
+    href: "/services/marketing",
     icon: Briefcase,
   },
   {
